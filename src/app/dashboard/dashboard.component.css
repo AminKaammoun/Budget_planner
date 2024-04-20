@@ -1,0 +1,39 @@
+.example-card {
+    max-width: 600px;
+    background: #FFF6FE;
+  }
+  
+  .income-header-image {
+    background-image: url('../../assets/images/dollar-symbol.png');
+    background-size: cover;
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    background-color: gray; /* Add a background color if needed */
+    border-radius: 50%;
+  }
+
+  .expense-header-image {
+    background-image: url('../../assets/images/dollar-symbol-.png');
+    background-size: cover;
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    background-color: gray; /* Add a background color if needed */
+    border-radius: 50%;
+  }
+
+
+  mat-grid-tile {
+    background: white;
+  }
+  .mat-sort-header-container {
+    align-items: center;
+  }
+
+  .example-card {
+    transition: transform 0.3s ease;
+  }
+
+  .example-card:hover {
+    transform: scale(1.05);
+  }
+  

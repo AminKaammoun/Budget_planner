@@ -1,0 +1,46 @@
+{
+  "members": [
+    {
+      "id": "1234",
+      "cin": "125488",
+      "name": "amine",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "type": "etudiant",
+      "createdDate": "27/1/2024"
+    },
+    {
+      "id": "123456",
+      "cin": "9541",
+      "name": "sirine",
+      "cv": "https://www.cdc.gov/polio/stop/pdf/stop-cv-format.pdf",
+      "type": "etudiant",
+      "createdDate": "27/1/2024"
+    }
+  ],
+  "articles": [
+    {
+      "id": "1",
+      "type": "article journal",
+      "titre": "Text Summerization using bert",
+      "date": "21/10/2022"
+    },
+    {
+      "id": "2",
+      "type": "article journal",
+      "titre": "Video to Text Converter",
+      "date": "05/01/2023"
+    },
+    {
+      "id": "3",
+      "type": "article journal",
+      "titre": "Video to Text Converter",
+      "date": "05/01/2023"
+    },
+    {
+      "id": "5",
+      "type": "article journal",
+      "titre": "Video to Text Converter",
+      "date": "05/01/2023"
+    }
+  ]
+}

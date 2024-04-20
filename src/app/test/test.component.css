@@ -1,0 +1,44 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+
+.income-header-image {
+  background-image: url('../../assets/images/dollar-symbol.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: gray; /* Add a background color if needed */
+  border-radius: 50%;
+}
+
+.expense-header-image {
+  background-image: url('../../assets/images/dollar-symbol-.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: gray; /* Add a background color if needed */
+  border-radius: 50%;
+}
+
+.dashboard-card {
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.03);
+}

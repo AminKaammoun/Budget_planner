@@ -1,0 +1,72 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  
+  <mat-grid-tile>
+    <mat-card class="example-card" style="width: 800px; margin: auto;">
+      <mat-card-header>
+        <div mat-card-avatar class="income-header-image"></div>
+        <mat-card-title>Income</mat-card-title>
+        <mat-card-subtitle>positive</mat-card-subtitle>
+      </mat-card-header>
+    
+      <hr style="border: none; border-top: 1px solid black; width: 90%;">
+      
+      <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+        <b><p style="font-size: 18px; margin-bottom: 10px;">Last Few Months</p></b>
+        <mat-list role="list" style="width: 100%;">
+          <mat-list-item role="listitem">January : 2000 DT</mat-list-item>
+          <mat-list-item role="listitem">February : 2500 DT</mat-list-item>
+          <mat-list-item role="listitem">March : 3000 DT</mat-list-item>
+        </mat-list>
+        <b><p style="font-size: 18px; margin-top: 20px;">Current Month : <span style="color: green;">2500 DT</span></p></b>
+      </mat-card-content>
+      
+      <mat-card-actions style="justify-content: center;">
+      <button mat-button style="margin-left: 500px; color: white; background-color: blue;">VIEW</button>
+
+      
+      </mat-card-actions>
+    </mat-card>
+    
+    
+</mat-grid-tile>
+  
+<mat-grid-tile>
+  <mat-card class="example-card" style="width: 800px; margin: auto;">
+    <mat-card-header>
+      <div mat-card-avatar class="expense-header-image"></div>
+      <mat-card-title>Expense</mat-card-title>
+      <mat-card-subtitle>negative</mat-card-subtitle>
+    </mat-card-header>
+  
+    <hr style="border: none; border-top: 1px solid black; width: 90%;">
+    
+    <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+      <b><p style="font-size: 18px; margin-bottom: 10px;">Last Few Months</p></b>
+      <mat-list role="list" style="width: 100%;">
+        <mat-list-item role="listitem">January : 2000 DT</mat-list-item>
+        <mat-list-item role="listitem">February : 2500 DT</mat-list-item>
+        <mat-list-item role="listitem">March : 3000 DT</mat-list-item>
+      </mat-list>
+      <b><p style="font-size: 18px; margin-top: 20px;">Current Month : <span style="color: red;">- 2500 DT</span></p></b>
+    </mat-card-content>
+    
+    <mat-card-actions style="justify-content: center;">
+      <button mat-button style="margin-left: 500px; color: white; background-color: blue;">VIEW</button>
+    
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <mat-card>
+  <mat-card-content>Simple card</mat-card-content>
+</mat-card>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <mat-card>
+  <mat-card-content>Simple card</mat-card-content>
+</mat-card>
+</mat-grid-tile>
+
+</mat-grid-list>
