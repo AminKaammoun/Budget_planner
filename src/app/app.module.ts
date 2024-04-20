@@ -36,6 +36,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { TestComponent } from './test/test.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 
 
 
@@ -56,6 +58,8 @@ import { TestComponent } from './test/test.component';
     ArticleFormComponent,
     ArticleForm2Component,
      TestComponent,
+     TransactionComponent,
+     TransactionFormComponent,
   ],
   imports: [
     MatGridListModule,

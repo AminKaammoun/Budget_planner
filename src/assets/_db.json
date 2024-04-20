@@ -42,5 +42,31 @@
       "titre": "Video to Text Converter",
       "date": "05/01/2023"
     }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "type": "expense",
+      "category" : "taxe",
+      "description": "electricity",
+      "amount" : "300",
+      "createdDate": "01/01/2024"
+    },
+    {
+      "id": "2",
+      "type": "expense",
+      "category" : "rent",
+      "description": "Home rent",
+      "amount" : "650",
+      "createdDate": "01/05/2024"
+    },
+    {
+      "id": "3",
+      "type": "income",
+      "category" : "salary",
+      "description": "salary from software enginner job",
+      "amount" : "2500",
+      "createdDate": "01/28/2024"
+    }
   ]
 }

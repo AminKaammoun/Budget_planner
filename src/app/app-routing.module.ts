@@ -9,6 +9,7 @@ import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { TestComponent } from './test/test.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,11 @@ const routes: Routes = [
     path:'test',
     pathMatch:'full',
     component: TestComponent
+  },
+  {
+    path:'transactions',
+    pathMatch:'full',
+    component: TransactionComponent
   },
 ];
 
