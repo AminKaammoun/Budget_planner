@@ -38,8 +38,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { TestComponent } from './test/test.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
-
-
+import { TransactionFormAddComponent } from './transaction-form-add/transaction-form-add.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -60,8 +60,10 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
      TestComponent,
      TransactionComponent,
      TransactionFormComponent,
+     TransactionFormAddComponent,
   ],
   imports: [
+    MatSelectModule,
     MatGridListModule,
     FlexLayoutModule,
     MatIconModule,

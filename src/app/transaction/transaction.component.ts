@@ -8,6 +8,7 @@ import { ViewChild} from '@angular/core';
 import { TransactionService } from 'src/Services/transaction.service';
 import { Transaction } from 'src/Modeles/Transaction';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
+import { TransactionFormAddComponent } from '../transaction-form-add/transaction-form-add.component';
 
 @Component({
   selector: 'app-transaction',
@@ -97,7 +98,7 @@ export class TransactionComponent implements OnInit{
     dialogConfig.autoFocus = true;
  
 
-    const dialogRef = this.dialog.open(TransactionFormComponent, dialogConfig);
+    const dialogRef = this.dialog.open(TransactionFormAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       data => {
         console.log("Dialog output:", data);

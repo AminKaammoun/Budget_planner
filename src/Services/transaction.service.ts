@@ -61,6 +61,8 @@ export class TransactionService {
       this.tab.filter(item => item.id == id)[0] ?? null))*/
   }
 
-
+  getSumOfMonthlyAmount(month: number, year: number) {
+    return this.httpClient.get<number>(`http://localhost:3000/transactions/sumOfMonthlyAmount?month=${month}&year=${year}`);
+  }
  
 }

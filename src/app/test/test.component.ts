@@ -1,14 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { TransactionService } from 'src/Services/transaction.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent {
+export class TestComponent implements OnInit{
   private breakpointObserver = inject(BreakpointObserver);
+
+  currentMonth !: string;
+  currentYear !: number;
+  totalAmount !: number;
+  constructor(private dataService: TransactionService) { }
+
+  ngOnInit(): void {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1; // Month is zero-based in JavaScript
+    const currentYear = currentDate.getFullYear();
+
+    this.dataService.getSumOfMonthlyAmount(currentMonth, currentYear)
+    .subscribe(totalAmount => {
+      this.totalAmount = totalAmount;
+    });
+  }
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -30,4 +47,12 @@ export class TestComponent {
       ];
     })
   );
+
+  getCurrentMonth(): string {
+    // Get the current month as a string
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const date = new Date();
+    return months[date.getMonth()];
+  }
 }
+
