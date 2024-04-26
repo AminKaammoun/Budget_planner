@@ -40,6 +40,9 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { TransactionFormAddComponent } from './transaction-form-add/transaction-form-add.component';
 import {MatSelectModule} from '@angular/material/select';
+import { CategoryComponent } from './category/category.component';
+import { CategoryFormAddComponent } from './category-form-add/category-form-add.component';
+import { CategoryFormEditComponent } from './category-form-edit/category-form-edit.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import {MatSelectModule} from '@angular/material/select';
      TransactionComponent,
      TransactionFormComponent,
      TransactionFormAddComponent,
+     CategoryComponent,
+     CategoryFormAddComponent,
+     CategoryFormEditComponent,
   ],
   imports: [
     MatSelectModule,

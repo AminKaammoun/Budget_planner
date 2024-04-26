@@ -1,0 +1,22 @@
+<div style="padding: 16px;">
+    <h2 style="margin-bottom: 10px;">Add transaction</h2>
+  
+    <form [formGroup]="form">
+  
+     
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" name="name" formControlName="name" required>
+        </mat-form-field>
+  
+     
+  
+      <div>
+        <button mat-raised-button color="warn" (click)="close()">Close</button>
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+      </div>
+  
+    </form>
+  </div>
+  

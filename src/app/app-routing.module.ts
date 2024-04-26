@@ -10,12 +10,18 @@ import { LoginComponent } from './login/login.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { TestComponent } from './test/test.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   {
     path:'members',
     pathMatch:'full',
     component: MemberComponent
+  },
+  {
+    path:'categories',
+    pathMatch:'full',
+    component: CategoryComponent
   },
   {
     path: 'create',

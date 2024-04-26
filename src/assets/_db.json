@@ -68,5 +68,47 @@
       "amount": "2500",
       "createdDate": "01/28/2024"
     }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Food"
+    
+    },
+    {
+      "id": "2",
+      "name": "Transport"
+    
+    },
+    {
+      "id": "3",
+      "name": "Healthcare"
+    
+    },  
+    {
+      "id": "4",
+      "name": "Clothes"
+    
+    },
+    {
+      "id": "5",
+      "name": "Education"
+    
+    },
+    {
+      "id": "6",
+      "name": "Entertainment"
+    
+    },
+    {
+      "id": "7",
+      "name": "Bills"
+    
+    },
+    {
+      "id": "8",
+      "name": "Salary"
+    
+    }
   ]
 }

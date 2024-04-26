@@ -5,19 +5,19 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild} from '@angular/core';
-import { TransactionService } from 'src/Services/transaction.service';
-import { Transaction } from 'src/Modeles/Transaction';
-import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
-import { TransactionFormAddComponent } from '../transaction-form-add/transaction-form-add.component';
+import { CategoryService } from 'src/Services/category.service';
+import { Category } from 'src/Modeles/Category';
+import { CategoryFormAddComponent } from '../category-form-add/category-form-add.component';
+import { CategoryFormEditComponent } from '../category-form-edit/category-form-edit.component';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
-export class TransactionComponent implements OnInit{
+export class CategoryComponent implements OnInit{
 
-  displayedColumns: string[] = ['id', 'type', 'category', 'description','amount','createdDate','action'];
+  displayedColumns: string[] = ['id', 'name','action'];
  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
  
@@ -35,23 +35,24 @@ export class TransactionComponent implements OnInit{
    
   }
 
-  constructor(private MS: TransactionService, private dialog:MatDialog) { 
+  constructor(private MS: CategoryService, private dialog:MatDialog) { 
   
   }
-  dataSource = new MatTableDataSource<Transaction>();
+  dataSource = new MatTableDataSource<Category>([]);
+
 
   ngOnInit(): void{
     this.dataSource.paginator = this.paginator;
-      this.getTransactions();
+      this.getCategories();
   }
 
-  getTransactions(): void {
-    this.MS.GetAll().subscribe((categories: Transaction[]) => {
+  getCategories(): void {
+    this.MS.GetAll().subscribe((categories: Category[]) => {
       this.dataSource.data = categories; 
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator; 
     });
   }
-
+  
 
   delete(id: string): void {
   
@@ -64,7 +65,7 @@ export class TransactionComponent implements OnInit{
       if(result)
        //1 lancer la boite
     this.MS.onDelete(id).subscribe(() => {
-      this.getTransactions();
+      this.getCategories();
     });
     
     });
@@ -81,13 +82,13 @@ export class TransactionComponent implements OnInit{
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    this.MS.getTransactionById(id).subscribe((transaction: Transaction) => {
+    this.MS.getCategoryById(id).subscribe((category: Category) => {
      
-    dialogConfig.data =  transaction;
+    dialogConfig.data =  category;
     
     
     
-    this.dialog.open(TransactionFormComponent, dialogConfig)})
+    this.dialog.open(CategoryFormEditComponent, dialogConfig)})
   }
 
 
@@ -101,7 +102,7 @@ export class TransactionComponent implements OnInit{
     dialogConfig.autoFocus = true;
  
 
-    const dialogRef = this.dialog.open(TransactionFormAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(CategoryFormAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       data => {
         console.log("Dialog output:", data);
