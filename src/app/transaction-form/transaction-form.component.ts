@@ -24,6 +24,7 @@ export class TransactionFormComponent implements OnInit{
     this.category = data.category;
     this.description = data.description;
     this.amount = data.amount;
+    
 
   }
 

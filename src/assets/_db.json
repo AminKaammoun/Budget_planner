@@ -46,7 +46,7 @@
   "transactions": [
     {
       "id": "1",
-      "type": "expense",
+      "type": "Expense",
       "category": "taxe",
       "description": "electricity",
       "amount": "300",
@@ -54,7 +54,7 @@
     },
     {
       "id": "2",
-      "type": "expense",
+      "type": "Expense",
       "category": "rent",
       "description": "Home rent",
       "amount": "650",
@@ -62,53 +62,70 @@
     },
     {
       "id": "3",
-      "type": "income",
+      "type": "Income",
       "category": "salary",
       "description": "salary from software enginner job",
       "amount": "2500",
       "createdDate": "01/28/2024"
+    },
+    {
+      "id": "72b5",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "test",
+      "amount": 50,
+      "createdDate": "04/17/2024"
+    },
+    {
+      "id": "d794",
+      "type": "Expense",
+      "category": "Clothes",
+      "description": "Hoody",
+      "amount": 150,
+      "createdDate": "04/17/2024"
+    },
+    {
+      "id": "a259",
+      "type": "Income",
+      "category": "Salary",
+      "description": "DEV",
+      "amount": 550,
+      "createdDate": "2024-04-04T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [
     {
       "id": "1",
       "name": "Food"
-    
     },
     {
       "id": "2",
       "name": "Transport"
-    
     },
     {
       "id": "3",
       "name": "Healthcare"
-    
-    },  
+    },
     {
       "id": "4",
       "name": "Clothes"
-    
     },
     {
       "id": "5",
       "name": "Education"
-    
     },
     {
       "id": "6",
       "name": "Entertainment"
-    
     },
     {
       "id": "7",
       "name": "Bills"
-    
     },
     {
       "id": "8",
       "name": "Salary"
-    
     }
   ]
 }
