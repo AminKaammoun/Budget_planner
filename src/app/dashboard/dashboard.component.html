@@ -1,5 +1,85 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
+
+
+  <mat-grid-list cols="2" rowHeight="500px">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>  
+          <div mat-card-avatar class=graph-header-image></div>
+          <mat-card-title>
+            Monthly Saving
+            <button mat-icon-button class="more-button" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          
+          </mat-card-title>
+          <mat-card-subtitle>general perspective</mat-card-subtitle>
+          
+        </mat-card-header>
+        <hr style="border: none; border-top: 1px solid black; width: 90%;">
+        <mat-card-content class="dashboard-card-content">
+         
+            <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+              <div>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="line" style="margin-right: 75px;">
+              <p style="text-align: center;"> Line chart for money by month </p>
+                  <div class="chart-wrapper">
+                  <canvas baseChart
+                          [type]="'line'"
+                    [datasets]="chartData1"
+                    [labels]="chartLabels1"
+                    [options]="chartOptions1"
+                    >
+                  </canvas>
+                </div>
+              </div>
+
+              <div fxLayout="column" fxLayoutAlign="space-around center" >
+              <div fxLayout="row" fxLayoutAlign="space-around center">
+
+               
+                <mat-card class="card" style="height: 100px; width: 150px; margin-left: 30px;background-color: lightseagreen;" >
+                  <mat-card-title style="text-align: center; color: white; ">Transactions</mat-card-title>
+                  <mat-card-content>
+                    <p class="value" style="text-align: center; color: white; font-size: 20px; margin-top: 20px;"><b>{{numberOfTransaction}}</b></p> 
+                  </mat-card-content>
+                </mat-card>
+              
+               
+                <mat-card class="card" style="height: 100px; width: 150px; margin-left: 30px;background-color: lightseagreen;" >
+                  <mat-card-title style="text-align: center; color: white;">Categories</mat-card-title>
+                  <mat-card-content>
+                    <p class="value" style="text-align: center; color: white; font-size: 20px; margin-top: 20px;"><b>{{numberOfCategories}}</b></p> 
+                  </mat-card-content>
+                </mat-card>
+              
+              </div>
+
+              <mat-card class="card" style="height: 100px; width: 150px; margin-left: 30px;background-color: gray; margin-top: 20px;" >
+                <mat-card-title style="text-align: center; color: white;">This Month</mat-card-title>
+                <mat-card-content>
+                  <p class="value" style="text-align: center; color: white; font-size: 20px; margin-top: 20px;"><b>{{numberOfCurrentMonthTransactions}}</b></p> 
+                </mat-card-content>
+              </mat-card>
+
+              <p class="value" style="text-align: center; font-size: 20px; margin-top: 20px;"><b>Total Saved: <span style="color: rgb(0, 196, 0);">{{totalIncome - totalExpense}} DT</span></b></p> 
+
+
+            </div>
+          </div>
+         
+            </div>
+            </mat-card-content>
+       
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+
   <mat-grid-list cols="2" rowHeight="390px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
@@ -29,14 +109,14 @@
                 <mat-list-item role="listitem">{{ getPreviousMonth(-1) }} : {{ monthTotals[getPreviousMonth(-1)].income }} DT</mat-list-item>
               </mat-list>
               <mat-list role="list" style="width: 100%;">
-                <mat-list-item role="listitem"><b>Total Income : <span style="color: green;">{{totalIncome }} DT</span></b></mat-list-item>
+                <mat-list-item role="listitem"><b>Total Income : <span style="color: rgb(0, 196, 0);">{{totalIncome }} DT</span></b></mat-list-item>
                
               </mat-list>
               </div>
-              <b><p style="font-size: 18px; margin-top: 20px;">Current Month ({{getCurrentMonth()}}) : <span style="color: green;">{{ monthTotals[currentMonth].income }} DT</span></p></b>
+              <b><p style="font-size: 18px; margin-top: 20px;">Current Month ({{getCurrentMonth()}}) : <span style="color: rgb(0, 196, 0);">{{ monthTotals[currentMonth].income }} DT</span></p></b>
             </mat-card-content>
             <mat-card-actions style="position: absolute; bottom: 0; right: 0;">
-              <button mat-button style="color: white; background-color: blue;">VIEW</button>
+              <button mat-button style="color: white; background-color: lightseagreen;">VIEW</button>
             </mat-card-actions>
           </div>
           
@@ -59,7 +139,7 @@
               <b><p style="font-size: 18px; margin-top: 20px;">Current Month ({{getCurrentMonth()}}) : <span style="color: red;"> -{{monthTotals[currentMonth].expense}} DT</span></p></b>
             </mat-card-content>
             <mat-card-actions style="position: absolute; bottom: 0; right: 0;">
-              <button mat-button style="color: white; background-color: blue;">VIEW</button>
+              <button mat-button style="color: white; background-color: lightseagreen;">VIEW</button>
             </mat-card-actions>
           </div>
           
@@ -75,13 +155,33 @@
           </div>
 
 
+          <div *ngIf="card.title === 'Monthly Saving'" style="position: relative;">
+            <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+              <div>
+                <div class="line">
+                <div class="chart-wrapper">
+                  <canvas baseChart
+                          [type]="'line'"
+                    [datasets]="chartData1"
+                    [labels]="chartLabels1"
+                    [options]="chartOptions1"
+                    >
+                  </canvas>
+                </div>
+              </div>
+              </div>
+            </mat-card-content>
+           
+          </div>
+
 
           <div *ngIf="card.title === 'Expense By Category ('+currentMonth +')'" style="position: relative;">
             <br>  <br>  <br>  <br>  <br>
             <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
              
               <div fxLayout="row" fxLayoutAlign="space-around center" >  
-              <div class="chart-wrapper">
+                <div class="pie">
+                <div class="chart-wrapper">
                   <canvas baseChart
                           [type]="'pie'"
                     [datasets]="chartData"
@@ -90,24 +190,24 @@
                     >
                   </canvas>
                 </div>
+              </div>
                 <br>
                
                 <div>
-                  <table border="1px">
-                    <tr>
-                      <th>Category</th>
-                      <th>Amount Spent</th>
-                      <th>(%)</th>
-                    </tr>
-                    
-                    <tr *ngFor="let item of categories">
-                      <td>{{ item.name }}</td>
-                      <td>{{expenseByCategory[item.name].expense}} DT</td>
-                      <td>{{ ((expenseByCategory[item.name].expense / monthTotals[currentMonth].expense) * 100) | number: '1.2-2' }}%</td>
+  <table class="data-table">
+    <tr>
+      <th>Category</th>
+      <th>Amount Spent (DT)</th>
+      <th>(%)</th>
+    </tr>
+    <tr *ngFor="let item of categories">
+      <td>{{ item.name }}</td>
+      <td>{{ expenseByCategory[item.name].expense }} DT</td>
+      <td>{{ ((expenseByCategory[item.name].expense / monthTotals[currentMonth].expense) * 100) | number: '1.2-2' }}%</td>
+    </tr>
+  </table>
+</div>
 
-                    </tr>
-                  </table>
-                </div>
                 </div>
             </mat-card-content>
            

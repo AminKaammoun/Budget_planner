@@ -106,6 +106,33 @@
       "amount": 69,
       "createdDate": "2024-04-23T23:00:00.000Z",
       "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "c95e",
+      "type": "Income",
+      "category": "Salary",
+      "description": "dev",
+      "amount": 1600,
+      "createdDate": "2024-03-21T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "e800",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "train bus",
+      "amount": 300,
+      "createdDate": "2024-02-29T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "b44f",
+      "type": "Expense",
+      "category": "Clothes",
+      "description": "pants",
+      "amount": 250,
+      "createdDate": "2024-03-14T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [

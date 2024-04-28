@@ -44,6 +44,16 @@
   border-radius: 50%;
 }
 
+.graph-header-image {
+  background-image: url('../../assets/images/graph.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: white; /* Add a background color if needed */
+  border-radius: 50%;
+}
+
+
 .dashboard-card {
   transition: transform 0.3s ease;
 }
@@ -51,7 +61,11 @@
 .dashboard-card:hover {
   transform: scale(1.03);
 }
-.chart-wrapper {
+.line {
+  width: 600px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+}
+.pie {
   width: 400px; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
 }
@@ -59,4 +73,29 @@
 canvas {
   width: 100% !important;
   height: 100% !important;
+}
+/* Styling for the data table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Styling for table headers and cells */
+.data-table th, .data-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  text-align: center;
+}
+
+/* Background color for table header */
+.data-table th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+/* Alternating row background color for better readability */
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+  text-align: center;
 }

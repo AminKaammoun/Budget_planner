@@ -19,15 +19,25 @@ export class DashboardComponent implements OnInit {
   chartLabels: string[] = [];
   chartOptions: ChartOptions = {};
 
+  chartData1: ChartDataset[] = [];
+  chartLabels1: string[] = [];
+  chartOptions1: ChartOptions = {};
+
+
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthTotals: { [key: string]: { income: number; expense: number } } = {};
+  savings: { [key: string]: { saving: number } } = {};
   currentMonth: string = '';
-  currentMonthExpense !: number;
+  
   totalIncome: number = 0;
   totalExpense: number = 0;
   expenseByCategory: { [key: string]: {expense: number } } = {};
 
   categories !: Category[];
+  numberOfTransaction : number = 0;
+  numberOfCategories : number = 0;
+  numberOfCurrentMonthTransactions : number = 0;
+
 
   constructor(
     private dataService: TransactionService,
@@ -37,7 +47,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentMonth = this.getCurrentMonth();
-
+    this.getAllCategories();
+    this.getAllTransactions();
     // Fetch transactions for each month and calculate totals
     const observables = this.months.map(month => this.filterTransactionsByMonth(month,'yes'));
 
@@ -46,6 +57,9 @@ export class DashboardComponent implements OnInit {
         this.getAllMonthsIncome();
         this.getAllMonthsExpense();
         this.pieChart();
+        this.lineChart();
+        this.getNumberOfTransactionsCurrentMonth();
+        
       },
       error: (err) => {
         console.error('Error processing transactions:', err);
@@ -59,7 +73,7 @@ export class DashboardComponent implements OnInit {
     map(({ matches }) => {
       if (matches) {
         return [
-          { img: 'income-header-image',subtitle : 'Card 1',title: 'Card 1', cols: 1, rows: 1 },
+          
           { img: 'income-header-image',subtitle : 'positive',title: 'Income', cols: 1, rows: 1 },
           { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 1 },
           { img: 'expense-header-image',subtitle : 'negative',title: 'Expense', cols: 1, rows: 1 }
@@ -67,7 +81,7 @@ export class DashboardComponent implements OnInit {
       }
 
       return [
-        { img: 'income-header-image',subtitle : 'Card 1',title: 'Card 1', cols: 2, rows: 1 },
+       
         { img: 'income-header-image',subtitle : 'positive',title: 'Income', cols: 1, rows: 1 },
         { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 2 },
         { img: 'expense-header-image',subtitle : 'negative',title: 'Expense', cols: 1, rows: 1 }
@@ -75,6 +89,38 @@ export class DashboardComponent implements OnInit {
     })
   );
 
+getAllTransactions(){
+  this.dataService.GetAll().subscribe((r)=>{
+    this.numberOfTransaction = r.length;
+  })
+}
+
+getAllCategories(){
+  this.categoryService.GetAll().subscribe((r)=>{
+    this.numberOfCategories = r.length;
+  })
+}
+
+getNumberOfTransactionsCurrentMonth(): void {
+  this.dataService.GetAll().pipe(
+    map((transactions: Transaction[]) => {
+      const currentMonthTransactions = transactions.filter(transaction => {
+        const transactionDate = new Date(transaction.createdDate);
+        const transactionMonth = transactionDate.toLocaleString('en-US', { month: 'long' });
+        return transactionMonth.toLowerCase() === this.currentMonth.toLowerCase();
+      });
+      return currentMonthTransactions.length;
+    })
+  ).subscribe(
+    (count: number) => {
+      this.numberOfCurrentMonthTransactions = count;
+      console.log(`Number of transactions in ${this.currentMonth}: ${count}`);
+    },
+    (error) => {
+      console.error('Error fetching transactions:', error);
+    }
+  );
+}
 
 
   getCurrentMonth(): string {
@@ -91,6 +137,7 @@ export class DashboardComponent implements OnInit {
   filterTransactionsByMonth(targetMonth: string, caller: string): Observable<Transaction[]> {
    
     return this.dataService.GetAll().pipe(
+      
       map((transactions: Transaction[]) => {
         transactions.forEach(transaction => {
           if (transaction.createdDate) {
@@ -101,17 +148,23 @@ export class DashboardComponent implements OnInit {
               if (!this.monthTotals[targetMonth]) {
                 this.monthTotals[targetMonth] = { income: 0, expense: 0 };
               }
+             
 
               if (transaction.type === 'Income' && caller === 'yes') {
                 this.monthTotals[targetMonth].income += transaction.amount;
+                
               } else if (transaction.type === 'Expense' && caller === 'yes') {
                 this.monthTotals[targetMonth].expense += transaction.amount;
+                
               }
+              this.savings[targetMonth] = { saving: this.monthTotals[targetMonth].income - this.monthTotals[targetMonth].expense };
+              
             }
           }
         });
 
         return transactions.filter(transaction => {
+         
           const date = new Date(transaction.createdDate);
           const monthName = this.months[date.getMonth()];
           return monthName.toLowerCase() === targetMonth.toLowerCase();
@@ -180,6 +233,24 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
+
+lineChart(): void {
+  this.chartLabels1 = this.months;
+  this.chartData1 = [
+    { data: Object.values(this.savings).map(record => record.saving), 
+      label: 'Savings' 
+    },
+    { data: Object.values(this.monthTotals).map(record => record.income), 
+      label: 'Income' 
+    },
+    { data: Object.values(this.monthTotals).map(record => record.expense), 
+      label: 'Expense' 
+    }
+ 
+  ];
+}
+
+
 
   configureChartOptions(): void {
     this.chartOptions = {
