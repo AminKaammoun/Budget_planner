@@ -60,6 +60,60 @@
       "amount": 75,
       "createdDate": "2024-03-31T23:00:00.000Z",
       "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "4acb",
+      "type": "Income",
+      "category": "Salary",
+      "description": "Dev",
+      "amount": 2500,
+      "createdDate": "2024-04-25T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "cece",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "Heart",
+      "amount": 50,
+      "createdDate": "2024-03-12T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "a1a4",
+      "type": "Income",
+      "category": "Salary",
+      "description": "dev",
+      "amount": 1500,
+      "createdDate": "2024-02-13T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "343a",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "train",
+      "amount": 450,
+      "createdDate": "2024-02-16T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "8989",
+      "type": "Income",
+      "category": "Salary",
+      "description": "dev",
+      "amount": 1350,
+      "createdDate": "2024-01-02T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "b828",
+      "type": "Expense",
+      "category": "Clothes",
+      "description": "pants",
+      "amount": 99,
+      "createdDate": "2024-01-19T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [

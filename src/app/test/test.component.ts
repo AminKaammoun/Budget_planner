@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { TransactionService } from 'src/Services/transaction.service';
+import { Transaction } from 'src/Modeles/Transaction';
 
 @Component({
   selector: 'app-test',
@@ -11,23 +12,26 @@ import { TransactionService } from 'src/Services/transaction.service';
 export class TestComponent implements OnInit{
   private breakpointObserver = inject(BreakpointObserver);
 
+ 
+  //currentMonthIncome : number = 0;
+  //currentMonthExpense : number = 0;
+  transactions !: Transaction[] ;
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  monthTotals: { [key: string]: { income: number; expense: number } } = {};
   currentMonth !: string;
-  currentYear !: number;
-  totalAmount !: number;
+
+
   constructor(private dataService: TransactionService) { }
 
   ngOnInit(): void {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth() + 1; // Month is zero-based in JavaScript
-    const currentYear = currentDate.getFullYear();
-
-    this.dataService.getSumOfMonthlyAmount(currentMonth, currentYear)
-    .subscribe(totalAmount => {
-      this.totalAmount = totalAmount;
+    this.months.forEach(month => {
+      this.filterTransactionsByMonth(month);
     });
+ 
+    this.currentMonth = this.getCurrentMonth();
   }
 
-  /** Based on the screen size, switch from standard to one column per row */
+
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -49,10 +53,52 @@ export class TestComponent implements OnInit{
   );
 
   getCurrentMonth(): string {
-    // Get the current month as a string
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+   
+  
     const date = new Date();
-    return months[date.getMonth()];
+  
+    return this.months[date.getMonth()];
+  }
+
+  getPrviousMonth(x:number): string {
+    
+    const date = new Date();
+  
+    return this.months[date.getMonth()+x];
+  }
+
+ 
+
+  filterTransactionsByMonth(targetMonth: string) {
+    // Initialize month totals if not already present
+    if (!this.monthTotals[targetMonth]) {
+      this.monthTotals[targetMonth] = { income: 0, expense: 0 };
+    }
+
+    // Get all transactions from DataService
+    this.dataService.GetAll().subscribe((data: Transaction[]) => {
+      // Filter transactions for the specified month
+      this.transactions = data.filter(transaction => {
+        if (transaction.createdDate) {
+          const date = new Date(transaction.createdDate);
+          const monthName = this.months[date.getMonth()];
+
+          // Check if the month matches the targetMonth
+          if (monthName.toLowerCase() === targetMonth.toLowerCase()) {
+            // Update month totals based on transaction type
+            if (transaction.type === 'Income') {
+              this.monthTotals[targetMonth].income += transaction.amount;
+            } else {
+              this.monthTotals[targetMonth].expense += transaction.amount;
+            }
+            return true; // Include transaction in filtered results
+          }
+        }
+        return false; // Exclude transactions that do not match the month
+      });
+
+      console.log('Filtered Transactions:', this.transactions);
+      console.log('Month Totals:', this.monthTotals);
+    });
   }
 }
-
