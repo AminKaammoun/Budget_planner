@@ -70,6 +70,42 @@
       "amount": 99,
       "createdDate": "2024-01-19T23:00:00.000Z",
       "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "c6ae",
+      "type": "Expense",
+      "category": "Food",
+      "description": "Food",
+      "amount": 250,
+      "createdDate": "2024-04-08T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "8fc2",
+      "type": "Expense",
+      "category": "Education",
+      "description": "University",
+      "amount": 150,
+      "createdDate": "2024-04-12T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "2b01",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "Train",
+      "amount": 25,
+      "createdDate": "2024-04-16T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "5250",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "Gripe",
+      "amount": 69,
+      "createdDate": "2024-04-23T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [

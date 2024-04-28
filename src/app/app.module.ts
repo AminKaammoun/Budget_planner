@@ -4,11 +4,9 @@ import {MatTableModule} from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatButtonModule} from '@angular/material/button';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,17 +20,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import{MatListModule} from '@angular/material/list'
 import {MatMenuModule} from '@angular/material/menu';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
 import { FirebaseModule } from './Firebase.module';
 import { LoginComponent } from './login/login.component';
 import {MatCardModule} from '@angular/material/card';
-
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
-
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { TransactionFormAddComponent } from './transaction-form-add/transaction-form-add.component';
@@ -40,19 +34,16 @@ import {MatSelectModule} from '@angular/material/select';
 import { CategoryComponent } from './category/category.component';
 import { CategoryFormAddComponent } from './category-form-add/category-form-add.component';
 import { CategoryFormEditComponent } from './category-form-edit/category-form-edit.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
    
     AppComponent,
-
     ConfirmDialogComponent,
     LayoutComponent,
     DashboardComponent,
-
     LoginComponent,
-
-
      TransactionComponent,
      TransactionFormComponent,
      TransactionFormAddComponent,
@@ -61,6 +52,7 @@ import { CategoryFormEditComponent } from './category-form-edit/category-form-ed
      CategoryFormEditComponent,
   ],
   imports: [
+    NgChartsModule,
     MatSelectModule,
     MatGridListModule,
     FlexLayoutModule,

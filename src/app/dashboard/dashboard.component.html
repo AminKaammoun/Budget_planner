@@ -75,6 +75,45 @@
           </div>
 
 
+
+          <div *ngIf="card.title === 'Expense By Category ('+currentMonth +')'" style="position: relative;">
+            <br>  <br>  <br>  <br>  <br>
+            <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+             
+              <div fxLayout="row" fxLayoutAlign="space-around center" >  
+              <div class="chart-wrapper">
+                  <canvas baseChart
+                          [type]="'pie'"
+                    [datasets]="chartData"
+                    [labels]="chartLabels"
+                    [options]="chartOptions"
+                    >
+                  </canvas>
+                </div>
+                <br>
+               
+                <div>
+                  <table border="1px">
+                    <tr>
+                      <th>Category</th>
+                      <th>Amount Spent</th>
+                      <th>(%)</th>
+                    </tr>
+                    
+                    <tr *ngFor="let item of categories">
+                      <td>{{ item.name }}</td>
+                      <td>{{expenseByCategory[item.name].expense}} DT</td>
+                      <td>{{ ((expenseByCategory[item.name].expense / monthTotals[currentMonth].expense) * 100) | number: '1.2-2' }}%</td>
+
+                    </tr>
+                  </table>
+                </div>
+                </div>
+            </mat-card-content>
+           
+          </div>
+
+          
           
        
         </mat-card-content>
