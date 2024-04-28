@@ -22,11 +22,17 @@
           <div *ngIf="card.title === 'Income'" style="position: relative;">
             <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
               <b><p style="font-size: 18px; margin-bottom: 10px;">Last Few Months</p></b>
-              <mat-list role="list" style="width: 100%;">
-                <mat-list-item role="listitem">{{getPrviousMonth(-3)}} : {{ monthTotals[getPrviousMonth(-3)].income }} DT</mat-list-item>
-                <mat-list-item role="listitem">{{getPrviousMonth(-2)}} : {{ monthTotals[getPrviousMonth(-2)].income }} DT</mat-list-item>
-                <mat-list-item role="listitem">{{getPrviousMonth(-1)}} : {{ monthTotals[getPrviousMonth(-1)].income }} DT</mat-list-item>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-list role="list" style="width: 100%; margin-right: 200px;" >
+                <mat-list-item role="listitem">{{ getPreviousMonth(-3) }} : {{ monthTotals[getPreviousMonth(-3)].income }} DT</mat-list-item>
+                <mat-list-item role="listitem">{{ getPreviousMonth(-2) }} : {{ monthTotals[getPreviousMonth(-2)].income }} DT</mat-list-item>
+                <mat-list-item role="listitem">{{ getPreviousMonth(-1) }} : {{ monthTotals[getPreviousMonth(-1)].income }} DT</mat-list-item>
               </mat-list>
+              <mat-list role="list" style="width: 100%;">
+                <mat-list-item role="listitem"><b>Total Income : <span style="color: green;">{{totalIncome }} DT</span></b></mat-list-item>
+               
+              </mat-list>
+              </div>
               <b><p style="font-size: 18px; margin-top: 20px;">Current Month ({{getCurrentMonth()}}) : <span style="color: green;">{{ monthTotals[currentMonth].income }} DT</span></p></b>
             </mat-card-content>
             <mat-card-actions style="position: absolute; bottom: 0; right: 0;">
@@ -34,15 +40,22 @@
             </mat-card-actions>
           </div>
           
+          
        
           <div *ngIf="card.title === 'Expense'" style="position: relative;">
             <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
               <b><p style="font-size: 18px; margin-bottom: 10px;">Last Few Months</p></b>
+              <div fxLayout="row" fxLayoutAlign="space-between center">
               <mat-list role="list" style="width: 100%;">
-                <mat-list-item role="listitem">{{getPrviousMonth(-3)}} : -{{ monthTotals[getPrviousMonth(-3)].expense }} DT</mat-list-item>
-                <mat-list-item role="listitem">{{getPrviousMonth(-2)}} : -{{ monthTotals[getPrviousMonth(-2)].expense }} DT</mat-list-item>
-                <mat-list-item role="listitem">{{getPrviousMonth(-1)}} : -{{ monthTotals[getPrviousMonth(-1)].expense }} DT</mat-list-item>
+                <mat-list-item role="listitem">{{getPreviousMonth(-3)}} : -{{ monthTotals[getPreviousMonth(-3)].expense }} DT</mat-list-item>
+                <mat-list-item role="listitem">{{getPreviousMonth(-2)}} : -{{ monthTotals[getPreviousMonth(-2)].expense }} DT</mat-list-item>
+                <mat-list-item role="listitem">{{getPreviousMonth(-1)}} : -{{ monthTotals[getPreviousMonth(-1)].expense }} DT</mat-list-item>
               </mat-list>
+              <mat-list role="list" style="width: 100%;margin-left: 200px;">
+                <mat-list-item role="listitem"><b>Total Expense : <span style="color: red;">-{{totalExpense }} DT</span></b></mat-list-item>
+               
+              </mat-list>
+            </div>
               <b><p style="font-size: 18px; margin-top: 20px;">Current Month ({{getCurrentMonth()}}) : <span style="color: red;"> -{{monthTotals[currentMonth].expense}} DT</span></p></b>
             </mat-card-content>
             <mat-card-actions style="position: absolute; bottom: 0; right: 0;">

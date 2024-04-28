@@ -1,8 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+
 import { TransactionService } from 'src/Services/transaction.service';
 import { Transaction } from 'src/Modeles/Transaction';
+import { forkJoin } from 'rxjs';
+import { map, switchMap, tap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,22 +14,30 @@ import { Transaction } from 'src/Modeles/Transaction';
 export class DashboardComponent implements OnInit{
   private breakpointObserver = inject(BreakpointObserver);
 
- 
-  //currentMonthIncome : number = 0;
-  //currentMonthExpense : number = 0;
   transactions !: Transaction[] ;
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthTotals: { [key: string]: { income: number; expense: number } } = {};
   currentMonth !: string;
-
+  totalIncome !: number;
+  totalExpense !: number;
 
   constructor(private dataService: TransactionService) { }
 
   ngOnInit(): void {
-    this.months.forEach(month => {
-      this.filterTransactionsByMonth(month);
+    const observables = this.months.map(month => this.filterTransactionsByMonth(month));
+
+    
+    forkJoin(observables).subscribe({
+      next: () => {
+     
+        this.getAllMonthsIncome();
+        this.getAllMonthsExpense();
+      },
+      error: (err) => {
+        console.error('Error processing transactions:', err);
+      }
     });
- 
+
     this.currentMonth = this.getCurrentMonth();
   }
 
@@ -60,45 +70,72 @@ export class DashboardComponent implements OnInit{
     return this.months[date.getMonth()];
   }
 
-  getPrviousMonth(x:number): string {
+  getPreviousMonth(x:number): string {
     
     const date = new Date();
   
     return this.months[date.getMonth()+x];
   }
 
+
+ getAllMonthsIncome(): void{
+  this.totalIncome = 0;
+  
+  
+  
+  for (let month in this.monthTotals) {
+    if (this.monthTotals.hasOwnProperty(month)) {
+
+      this.totalIncome += this.monthTotals[month].income;
+    }
+  }
+ 
+}
+
+getAllMonthsExpense(): void{
+  this.totalExpense = 0;
+  
+  
+  for (let month in this.monthTotals) {
+    if (this.monthTotals.hasOwnProperty(month)) {
+  
+      this.totalExpense += this.monthTotals[month].expense;
+    }
+  }
+ 
+}
+ 
  
 
-  filterTransactionsByMonth(targetMonth: string) {
-    // Initialize month totals if not already present
-    if (!this.monthTotals[targetMonth]) {
-      this.monthTotals[targetMonth] = { income: 0, expense: 0 };
-    }
+filterTransactionsByMonth(targetMonth: string) {
+  return this.dataService.GetAll().pipe(
+    tap((data: Transaction[]) => {
+  
+      if (!this.monthTotals[targetMonth]) {
+        this.monthTotals[targetMonth] = { income: 0, expense: 0 };
+      }
 
-    // Get all transactions from DataService
-    this.dataService.GetAll().subscribe((data: Transaction[]) => {
-      // Filter transactions for the specified month
       this.transactions = data.filter(transaction => {
         if (transaction.createdDate) {
           const date = new Date(transaction.createdDate);
           const monthName = this.months[date.getMonth()];
 
-          // Check if the month matches the targetMonth
           if (monthName.toLowerCase() === targetMonth.toLowerCase()) {
-            // Update month totals based on transaction type
+         
             if (transaction.type === 'Income') {
               this.monthTotals[targetMonth].income += transaction.amount;
             } else {
               this.monthTotals[targetMonth].expense += transaction.amount;
             }
-            return true; // Include transaction in filtered results
+            return true;
           }
         }
-        return false; // Exclude transactions that do not match the month
+        return false; 
       });
-
-      console.log('Filtered Transactions:', this.transactions);
-      console.log('Month Totals:', this.monthTotals);
-    });
-  }
+    }),
+    finalize(() => {
+      console.log(`Transactions processed for ${targetMonth}`);
+    })
+  );
+}
 }
