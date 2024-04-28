@@ -83,7 +83,14 @@ export class TransactionComponent implements OnInit{
     dialogConfig.autoFocus = true;
     this.MS.getTransactionById(id).subscribe((transaction: Transaction) => {
      
-    dialogConfig.data =  transaction;
+      dialogConfig.data = {
+        type: transaction.type,
+        category: transaction.category,
+        description: transaction.description,
+        amount: transaction.amount,
+        createdDate: transaction.createdDate,
+        id: id 
+      };
     
     
     

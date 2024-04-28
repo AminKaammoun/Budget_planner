@@ -84,7 +84,10 @@ export class CategoryComponent implements OnInit{
     dialogConfig.autoFocus = true;
     this.MS.getCategoryById(id).subscribe((category: Category) => {
      
-    dialogConfig.data =  category;
+    dialogConfig.data =  {
+      name : category.name,
+      id : id
+    };
     
     
     

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TransactionService } from 'src/Services/transaction.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/Services/category.service';
+import { Category } from 'src/Modeles/Category';
 
 @Component({
   selector: 'app-transaction-form',
@@ -15,29 +17,49 @@ export class TransactionFormComponent implements OnInit{
   category: string;
   description : string;
   amount: number;
-  date: string;
+  createdDate: string;
+  id: string;
 
-  constructor(private MS: TransactionService, private router: Router, private dialogRef: MatDialogRef<TransactionFormComponent>, @Inject(MAT_DIALOG_DATA) data:any) {
+  categories: Category[] = [];
+
+  constructor(private MS: TransactionService, private CS : CategoryService,private router: Router, private dialogRef: MatDialogRef<TransactionFormComponent>, @Inject(MAT_DIALOG_DATA) data:any) {
   
     this.type = data.type;
-    this.date = data.date;
+    this.createdDate = data.date;
     this.category = data.category;
     this.description = data.description;
     this.amount = data.amount;
-    
+    this.id = data.id;
 
   }
 
 ngOnInit(): void {
-    this.initForm();
+  this.loadCategories();
 }
 
 save() {
-  this.dialogRef.close(this.form.value);
+  
+  
+  this.MS.updateTransaction(this.id,this.form.value).subscribe((r)=>{
+    this.dialogRef.close(this.form.value);
+  })
+  console.log(this.form.value);
   
 }
 
-
+loadCategories(): void {
+  this.CS.GetAll().subscribe(
+    (data: Category[]) => {
+      this.categories = data;
+      console.log('Categories:', this.categories);
+      this.initForm(); 
+    },
+    (error) => {
+      console.error('Error loading categories:', error);
+    
+    }
+  );
+}
 close() {
   this.dialogRef.close();
 }
@@ -50,7 +72,7 @@ initForm(): void {
     category: new FormControl(this.category, [Validators.required]),
     description: new FormControl(this.description, [Validators.required]),
     amount: new FormControl(this.amount, [Validators.required]),
-    date: new FormControl(this.date, [Validators.required]),
+    createdDate: new FormControl(this.createdDate, [Validators.required]),
   })
 } 
 

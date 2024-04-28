@@ -1,6 +1,6 @@
 import { Component , Inject, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoryComponent } from '../category/category.component';
+import { CategoryService } from 'src/Services/category.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
@@ -13,12 +13,13 @@ import { Router } from '@angular/router';
 export class CategoryFormEditComponent implements OnInit{
   form !: FormGroup;
   name: string;
+  id: string;
 
 
-  constructor(private MS: CategoryComponent, private router: Router, private dialogRef: MatDialogRef<CategoryFormEditComponent>, @Inject(MAT_DIALOG_DATA) data:any) {
+  constructor(private MS: CategoryService, private router: Router, private dialogRef: MatDialogRef<CategoryFormEditComponent>, @Inject(MAT_DIALOG_DATA) data:any) {
   
     this.name = data.name;
- 
+    this.id = data.id;
 
   }
 
@@ -27,7 +28,9 @@ ngOnInit(): void {
 }
 
 save() {
-  this.dialogRef.close(this.form.value);
+  this.MS.updateCategory(this.id,this.form.value).subscribe((r)=>{
+    this.dialogRef.close(this.form.value);
+  })
   
 }
 
