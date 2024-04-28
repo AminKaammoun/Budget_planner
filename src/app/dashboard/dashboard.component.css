@@ -1,39 +1,44 @@
-.example-card {
-    max-width: 600px;
-    background: #FFF6FE;
-  }
-  
-  .income-header-image {
-    background-image: url('../../assets/images/dollar-symbol.png');
-    background-size: cover;
-    width: 60px; /* Adjust the width as needed */
-    height: 60px; /* Adjust the height as needed */
-    background-color: gray; /* Add a background color if needed */
-    border-radius: 50%;
-  }
+.grid-container {
+  margin: 20px;
+}
 
-  .expense-header-image {
-    background-image: url('../../assets/images/dollar-symbol-.png');
-    background-size: cover;
-    width: 60px; /* Adjust the width as needed */
-    height: 60px; /* Adjust the height as needed */
-    background-color: gray; /* Add a background color if needed */
-    border-radius: 50%;
-  }
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
 
 
-  mat-grid-tile {
-    background: white;
-  }
-  .mat-sort-header-container {
-    align-items: center;
-  }
+.income-header-image {
+  background-image: url('../../assets/images/dollar-symbol.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: gray; /* Add a background color if needed */
+  border-radius: 50%;
+}
 
-  .example-card {
-    transition: transform 0.3s ease;
-  }
+.expense-header-image {
+  background-image: url('../../assets/images/dollar-symbol-.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: gray; /* Add a background color if needed */
+  border-radius: 50%;
+}
 
-  .example-card:hover {
-    transform: scale(1.05);
-  }
-  
+.dashboard-card {
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.03);
+}

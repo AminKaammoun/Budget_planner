@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Article } from 'src/Modeles/Article';
+
 import { GLOBAL } from 'src/app/app-config';
 import { Category } from 'src/Modeles/Category';
 
