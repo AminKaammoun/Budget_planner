@@ -133,6 +133,204 @@
       "amount": 250,
       "createdDate": "2024-03-14T23:00:00.000Z",
       "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "945a",
+      "type": "Income",
+      "category": "Salary",
+      "description": "dev",
+      "amount": 2500,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "f0f0",
+      "type": "Expense",
+      "category": "Food",
+      "description": "food",
+      "amount": 250,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "6bec",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "bus",
+      "amount": 75,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "b93d",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "care",
+      "amount": 30,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "57ab",
+      "type": "Expense",
+      "category": "Clothes",
+      "description": "2 pants",
+      "amount": 150,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "f995",
+      "type": "Expense",
+      "category": "Education",
+      "description": "Biblio + cahier + stylo + resnet",
+      "amount": 300,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "d0a1",
+      "type": "Expense",
+      "category": "Entertainment",
+      "description": "weekend",
+      "amount": 150,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "6467",
+      "type": "Expense",
+      "category": "Bills",
+      "description": "Rent",
+      "amount": 950,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "cc30",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "Train",
+      "amount": 450,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "e50a",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "Corona",
+      "amount": 250,
+      "createdDate": "2024-04-30T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "ace9",
+      "type": "Income",
+      "category": "Salary",
+      "description": "Salary",
+      "amount": 2750,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "7f4b",
+      "type": "Expense",
+      "category": "Food",
+      "description": "food",
+      "amount": 250,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "fbc4",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "bus ",
+      "amount": 75,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "7a89",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "healthcare",
+      "amount": 25,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "58e7",
+      "type": "Expense",
+      "category": "Clothes",
+      "description": "clothes",
+      "amount": 20,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "52a3",
+      "type": "Expense",
+      "category": "Education",
+      "description": "University",
+      "amount": 150,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "e349",
+      "type": "Expense",
+      "category": "Entertainment",
+      "description": "go out weekends",
+      "amount": 100,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "ab85",
+      "type": "Expense",
+      "category": "Bills",
+      "description": "Taxe",
+      "amount": 200,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "57c6",
+      "type": "Expense",
+      "category": "Bills",
+      "description": "Rent",
+      "amount": 750,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "1b01",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "Glasses",
+      "amount": 350,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "bedd",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "taxi",
+      "amount": 100,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "6ff3",
+      "type": "Expense",
+      "category": "Entertainment",
+      "description": "Paris waldisney",
+      "amount": 250,
+      "createdDate": "2024-05-31T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [
@@ -167,6 +365,18 @@
     {
       "id": "8",
       "name": "Salary"
+    }
+  ],
+  "goals": [
+    {
+      "id": "1",
+      "desc": "Buy a pc",
+      "amount": "10000"
+    },
+    {
+      "id": "2",
+      "desc": "Buy a phone",
+      "amount": "6500"
     }
   ]
 }

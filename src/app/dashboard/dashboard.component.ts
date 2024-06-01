@@ -7,6 +7,8 @@ import { Transaction } from 'src/Modeles/Transaction';
 import { CategoryService } from 'src/Services/category.service';
 import { ChartDataset, ChartOptions } from 'chart.js';
 import { Category } from 'src/Modeles/Category';
+import { Goal } from 'src/Modeles/Goal';
+import { GoalService } from 'src/Services/GoalService';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +25,8 @@ export class DashboardComponent implements OnInit {
   chartLabels1: string[] = [];
   chartOptions1: ChartOptions = {};
 
+  chartDataGoal : ChartDataset[] = [];
+  chartLabelsGoal: string[]  = ['Collected', 'Remaining'];
 
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthTotals: { [key: string]: { income: number; expense: number } } = {};
@@ -38,17 +42,21 @@ export class DashboardComponent implements OnInit {
   numberOfCategories : number = 0;
   numberOfCurrentMonthTransactions : number = 0;
 
+  goals !: Goal[];
 
+  sliderValue: number = 50;
   constructor(
     private dataService: TransactionService,
     private categoryService: CategoryService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private goalService : GoalService
   ) { }
 
   ngOnInit(): void {
     this.currentMonth = this.getCurrentMonth();
     this.getAllCategories();
     this.getAllTransactions();
+    this.getAllGoals();
     // Fetch transactions for each month and calculate totals
     const observables = this.months.map(month => this.filterTransactionsByMonth(month,'yes'));
 
@@ -58,6 +66,7 @@ export class DashboardComponent implements OnInit {
         this.getAllMonthsExpense();
         this.pieChart();
         this.lineChart();
+        this.donoughtChart();
         this.getNumberOfTransactionsCurrentMonth();
         
       },
@@ -89,6 +98,29 @@ export class DashboardComponent implements OnInit {
     })
   );
 
+  cards1 = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(({ matches }) => {
+      if (matches) {
+        return [
+          
+          { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 1 },
+          { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 1 },
+          { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 1 },
+         
+        ];
+      }
+
+      return [
+       
+        { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 3 },
+      
+        { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 2 },
+       
+      ];
+    })
+  );
+
+
 getAllTransactions(){
   this.dataService.GetAll().subscribe((r)=>{
     this.numberOfTransaction = r.length;
@@ -100,7 +132,21 @@ getAllCategories(){
     this.numberOfCategories = r.length;
   })
 }
-
+getAllGoals(){
+  this.goalService.GetAll().subscribe((r)=>{
+   this.goals = r;
+  })
+}
+getChartDataSet(progress: number, total : number) {
+  return [
+    {
+      data: [progress, total - progress],
+      backgroundColor: ['#50C878', '#eeeeee'], // Colors for the segments
+      hoverBackgroundColor: ['#228B22', '#efefefef'],
+      text: `${progress}%` // Custom text for the doughnut hole
+    }
+  ];
+}
 getNumberOfTransactionsCurrentMonth(): void {
   this.dataService.GetAll().pipe(
     map((transactions: Transaction[]) => {
@@ -224,6 +270,8 @@ getNumberOfTransactionsCurrentMonth(): void {
 
       forkJoin(observables).subscribe((expenses: number[]) => {
         this.chartLabels = categories.map(category => category.name);
+        this.chartLabels = this.chartLabels.filter(label => label !== 'Salary');
+
         this.chartData = [
           { data: expenses, 
             label: '$ in millions' 
@@ -233,6 +281,16 @@ getNumberOfTransactionsCurrentMonth(): void {
       });
     });
   }
+
+  donoughtChart(): void {
+    this.chartDataGoal = [
+      { data: [5632,4368], 
+        label: '$ in millions' ,
+        backgroundColor: ['#50C878', '#eeeeee'], // Colors for the segments
+        hoverBackgroundColor: ['#7CFC00', '#efefefef']
+      }];
+  } 
+
 
 lineChart(): void {
   this.chartLabels1 = this.months;

@@ -3,13 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-
 import { LoginComponent } from './login/login.component';
-
-
 
 import { TransactionComponent } from './transaction/transaction.component';
 import { CategoryComponent } from './category/category.component';
+import { GoalComponent } from './goal/goal.component';
 
 const routes: Routes = [
   
@@ -42,6 +40,13 @@ const routes: Routes = [
     pathMatch:'full',
     component: TransactionComponent
   },
+
+  {
+    path:'goals',
+    pathMatch:'full',
+    component: GoalComponent
+  },
+
 ];
 
 @NgModule({

@@ -47,13 +47,13 @@ export class AuthService {
     }
 
 
-    // doFacebookLogin(): Promise<any> {
-    //     return this.afAuth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-    // }
-    //
-    // doTwitterLogin(): Promise<any> {
-    //     return this.afAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
-    // }
+     doFacebookLogin(): Promise<any> {
+         return this.afAuth.signInWithPopup(new auth.FacebookAuthProvider());
+     }
+    
+     doTwitterLogin(): Promise<any> {
+        return this.afAuth.signInWithPopup(new auth.TwitterAuthProvider());
+    }
 
     doGoogleLogin(): Promise<any> {
         return this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());

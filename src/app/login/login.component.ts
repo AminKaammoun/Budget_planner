@@ -10,8 +10,20 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   constructor(private AS :AuthService, private router : Router){}
-  signin(){
+  signinGoogle(){
     this.AS.doGoogleLogin().then(()=>{
+      this.router.navigate(['/dashboard'])
+    });
+  }
+
+  signinFacebook(){
+    this.AS.doFacebookLogin().then(()=>{
+      this.router.navigate(['/dashboard'])
+    });
+  }
+
+  signinTwitter(){
+    this.AS.doTwitterLogin().then(()=>{
       this.router.navigate(['/dashboard'])
     });
   }

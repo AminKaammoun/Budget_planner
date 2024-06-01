@@ -35,6 +35,15 @@
   border-radius: 50%;
 }
 
+.goal-header-image {
+  background-image: url('../../assets/images/goals.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: gray; /* Add a background color if needed */
+  border-radius: 50%;
+}
+
 .pie-header-image {
   background-image: url('../../assets/images/pie.png');
   background-size: cover;
@@ -69,6 +78,12 @@
   width: 400px; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
 }
+
+.dounught {
+  width: 400px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+}
+
 
 canvas {
   width: 100% !important;

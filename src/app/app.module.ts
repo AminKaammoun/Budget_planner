@@ -35,6 +35,9 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryFormAddComponent } from './category-form-add/category-form-add.component';
 import { CategoryFormEditComponent } from './category-form-edit/category-form-edit.component';
 import { NgChartsModule } from 'ng2-charts';
+import {MatSliderModule} from '@angular/material/slider';
+import { GoalComponent } from './goal/goal.component';
+import { GoalAddComponent } from './goal-add/goal-add.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +53,12 @@ import { NgChartsModule } from 'ng2-charts';
      CategoryComponent,
      CategoryFormAddComponent,
      CategoryFormEditComponent,
+     GoalComponent,
+     GoalAddComponent,
+  
   ],
   imports: [
+    FormsModule,
     NgChartsModule,
     MatSelectModule,
     MatGridListModule,
@@ -77,7 +84,8 @@ import { NgChartsModule } from 'ng2-charts';
     MatButtonModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
