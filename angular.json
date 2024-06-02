@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FirstApp": {
+    "Budget_planner": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FirstApp:build:production"
+              "browserTarget": "Budget_planner:build:production"
             },
             "development": {
-              "browserTarget": "FirstApp:build:development"
+              "browserTarget": "Budget_planner:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FirstApp:build"
+            "browserTarget": "Budget_planner:build"
           }
         },
         "test": {

@@ -377,6 +377,16 @@
       "id": "2",
       "desc": "Buy a phone",
       "amount": "6500"
+    },
+    {
+      "id": "9982",
+      "desc": "Buy a car",
+      "amount": 50000
+    },
+    {
+      "id": "06ac",
+      "desc": "Buy a house",
+      "amount": 250000
     }
   ]
 }

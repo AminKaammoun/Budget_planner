@@ -95,6 +95,8 @@ canvas {
   border-collapse: collapse;
 }
 
+
+
 /* Styling for table headers and cells */
 .data-table th, .data-table td {
   border: 1px solid #ddd;
@@ -113,4 +115,60 @@ canvas {
 .data-table tr:nth-child(even) {
   background-color: #f9f9f9;
   text-align: center;
+}
+
+.goals-container {
+  position: relative;
+}
+
+.goals-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goal-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.goal-desc, .goal-percentage {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.goal-percentage .percentage-text {
+  font-size: 20px;
+}
+
+.doughnut-chart {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-wrappers {
+  width: 150px; /* Adjust width as needed */
+  height: 150px; /* Adjust height as needed */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle; /* Center text vertically */
+  padding: 10px; /* Add padding for better spacing */
+}
+
+.goal-desc, .doughnut-chart, .goal-percentage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

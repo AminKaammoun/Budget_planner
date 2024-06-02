@@ -178,37 +178,47 @@
         <hr style="border: none; border-top: 1px solid black; width: 90%;">
       <mat-card-content>
 
-        <div *ngIf="card.title === 'Goals'" style="position: relative;">
-          <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
-            <div *ngFor="let goal of goals" fxLayout="row" fxLayoutAlign="space-around center" style="width: 100%;">
-              <!-- Goal title -->
-              <div style="margin-top: 10px;">
-              <p><b>{{ goal.desc }}: </b></p>
-              <p><b>{{ goal.amount }} DT</b></p>
-            </div>
-              <!-- Doughnut chart -->
-              <div class="dounught" style="flex: 1;">
-                <div class="chart-wrapper">
-                  <canvas baseChart
-                          [type]="'doughnut'"
-                          [datasets]="getChartDataSet(totalIncome - totalExpense,goal.amount)"
-                          [labels]="['Collected', 'Remaining']"
-                          [options]="chartOptions">
-                  </canvas>
-                 
-                </div> 
-              </div>
-              <!-- Goal amount -->
-             <div style="margin-top: 10px;">
-                <p style="font-size: 20px;"><b>{{ ((totalIncome - totalExpense) / goal.amount) * 100 | number: '1.2-2' }}%</b></p>
-                
-              </div>
-            </div>
+        <div *ngIf="card.title === 'Goals'" class="goals-container">
+          <mat-card-content class="goals-content">
+            <table border="1px">
+              <tbody>
+                <tr *ngFor="let goal of goals" class="goal-item">
+                  <!-- Goal description -->
+                  <td>
+                    <div class="goal-desc">
+                      <p><b>{{ goal.desc }}: </b></p>
+                      <p><b>{{ goal.amount | currency:'DT ' }}</b></p>
+                    </div>
+                  </td>
+                  
+                  <!-- Doughnut chart -->
+                  <td>
+                    <div class="doughnut-chart">
+                      <div class="chart-wrappers">
+                        <canvas baseChart
+                                [type]="'doughnut'"
+                                [datasets]="getChartDataSet(totalIncome - totalExpense, goal.amount)"
+                                [labels]="['Collected', 'Remaining']"
+                                [options]="chartOptions">
+                        </canvas>
+                      </div>
+                    </div>
+                  </td>
+            
+                  <!-- Goal percentage -->
+                  <td>
+                    <div class="goal-percentage">
+                      <p class="percentage-text"><b>{{ ((totalIncome - totalExpense) / goal.amount) * 100 | number: '1.2-2' }}%</b></p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </mat-card-content>
-        </div> 
-        
+        </div>
         
  
+        
 
       </mat-card-content>
     </mat-card>
