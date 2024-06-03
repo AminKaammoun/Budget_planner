@@ -8,13 +8,15 @@ import { LoginComponent } from './login/login.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { CategoryComponent } from './category/category.component';
 import { GoalComponent } from './goal/goal.component';
+import { authGuard } from './Auth.guard';
 
 const routes: Routes = [
   
   {
     path:'categories',
     pathMatch:'full',
-    component: CategoryComponent
+    component: CategoryComponent,
+    canActivate: [authGuard]
   },
 
   {
@@ -26,7 +28,8 @@ const routes: Routes = [
   {
     path:'dashboard',
     pathMatch:'full',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [authGuard]
   },
  
   {
@@ -38,13 +41,15 @@ const routes: Routes = [
   {
     path:'transactions',
     pathMatch:'full',
-    component: TransactionComponent
+    component: TransactionComponent,
+    canActivate: [authGuard]
   },
 
   {
     path:'goals',
     pathMatch:'full',
-    component: GoalComponent
+    component: GoalComponent,
+    canActivate: [authGuard]
   },
 
 ];
