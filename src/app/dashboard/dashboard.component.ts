@@ -25,12 +25,19 @@ export class DashboardComponent implements OnInit {
   chartLabels1: string[] = [];
   chartOptions1: ChartOptions = {};
 
+
+  chartData2: ChartDataset[] = [];
+  chartLabels2: string[] = [];
+  chartOptions2: ChartOptions = {};
+
+
   chartDataGoal : ChartDataset[] = [];
   chartLabelsGoal: string[]  = ['Collected', 'Remaining'];
 
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthTotals: { [key: string]: { income: number; expense: number } } = {};
   savings: { [key: string]: { saving: number } } = {};
+  trans: { [key: string]: { number: number } } = {};
   currentMonth: string = '';
   
   totalIncome: number = 0;
@@ -50,22 +57,35 @@ export class DashboardComponent implements OnInit {
     private categoryService: CategoryService,
     private breakpointObserver: BreakpointObserver,
     private goalService : GoalService
-  ) { }
+  ) { 
+
+ 
+
+  }
 
   ngOnInit(): void {
     this.currentMonth = this.getCurrentMonth();
+    for (let month of this.months) {
+      if (month === this.currentMonth) {
+        this.trans[month] = { number: 0 };
+        break;
+      } else {
+        this.trans[month] = { number: 0 };
+      }
+    };
     this.getAllCategories();
     this.getAllTransactions();
     this.getAllGoals();
     // Fetch transactions for each month and calculate totals
     const observables = this.months.map(month => this.filterTransactionsByMonth(month,'yes'));
-
+    this.months.map(month => this.getNumberOfTransactions(month));
     forkJoin(observables).subscribe({
       next: () => {
         this.getAllMonthsIncome();
         this.getAllMonthsExpense();
         this.pieChart();
         this.lineChart();
+        this.lineChart1();
         this.donoughtChart();
         this.getNumberOfTransactionsCurrentMonth();
         
@@ -104,8 +124,8 @@ export class DashboardComponent implements OnInit {
         return [
           
           { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 1 },
-          { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 1 },
-          { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 1 },
+      
+          { img: 'trans-header-image',subtitle : 'pie chart for expense',title: 'Number of transactions per month', cols: 1, rows: 1 },
          
         ];
       }
@@ -114,7 +134,7 @@ export class DashboardComponent implements OnInit {
        
         { img: 'goal-header-image',subtitle : 'Achieve your targets',title: 'Goals', cols: 1, rows: 3 },
       
-        { img: 'pie-header-image',subtitle : 'pie chart for expense',title: 'Expense By Category'+" ("+this.currentMonth+")", cols: 1, rows: 2 },
+        { img: 'trans-header-image',subtitle : 'transactions per month',title: 'Number of transactions per month', cols: 1, rows: 2 },
        
       ];
     })
@@ -169,6 +189,29 @@ getNumberOfTransactionsCurrentMonth(): void {
 }
 
 
+getNumberOfTransactions(month : string): void {
+  this.dataService.GetAll().pipe(
+    map((transactions: Transaction[]) => {
+      const currentMonthTransactions = transactions.filter(transaction => {
+        const transactionDate = new Date(transaction.createdDate);
+        const transactionMonth = transactionDate.toLocaleString('en-US', { month: 'long' });
+        return transactionMonth.toLowerCase() === month.toLowerCase();
+      });
+     
+      return currentMonthTransactions.length;
+    })
+  ).subscribe(
+    (count: number) => {
+      this.trans[month].number=count;
+      console.log(`Number of transactions in ${this.currentMonth}: ${count}`);
+    },
+    (error) => {
+      console.error('Error fetching transactions:', error);
+    }
+  );
+}
+
+
   getCurrentMonth(): string {
     const date = new Date();
     return this.months[date.getMonth()];
@@ -204,7 +247,7 @@ getNumberOfTransactionsCurrentMonth(): void {
                 
               }
               this.savings[targetMonth] = { saving: this.monthTotals[targetMonth].income - this.monthTotals[targetMonth].expense };
-              
+          
             }
           }
         });
@@ -213,6 +256,7 @@ getNumberOfTransactionsCurrentMonth(): void {
          
           const date = new Date(transaction.createdDate);
           const monthName = this.months[date.getMonth()];
+          //this.trans["monthName"].number=this.trans["monthName"].number+1;
           return monthName.toLowerCase() === targetMonth.toLowerCase();
         });
       }),
@@ -304,6 +348,16 @@ lineChart(): void {
     { data: Object.values(this.monthTotals).map(record => record.expense), 
       label: 'Expense' 
     }
+ 
+  ];
+}
+
+lineChart1(): void {
+  this.chartLabels2 = this.months;
+  this.chartData2 = [
+    { data: Object.values(this.trans).map(record => record.number), 
+      label: 'Transactions' 
+    },
  
   ];
 }

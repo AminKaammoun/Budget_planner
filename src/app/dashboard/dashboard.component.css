@@ -62,6 +62,15 @@
   border-radius: 50%;
 }
 
+.trans-header-image {
+  background-image: url('../../assets/images/lending.png');
+  background-size: cover;
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: white; /* Add a background color if needed */
+  border-radius: 50%;
+}
+
 
 .dashboard-card {
   transition: transform 0.3s ease;
@@ -74,6 +83,12 @@
   width: 600px; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
 }
+
+.line1 {
+  width: 750px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+}
+
 .pie {
   width: 400px; /* Adjust width as needed */
   height: 400px; /* Adjust height as needed */
@@ -154,6 +169,11 @@ canvas {
 .chart-wrappers {
   width: 150px; /* Adjust width as needed */
   height: 150px; /* Adjust height as needed */
+}
+
+.chart-wrappers1 {
+  width: 250px; /* Adjust width as needed */
+  height: 250px; /* Adjust height as needed */
 }
 table {
   width: 100%;

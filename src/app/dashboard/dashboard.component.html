@@ -217,8 +217,27 @@
           </mat-card-content>
         </div>
         
- 
-        
+        <div *ngIf="card.title === 'Number of transactions per month'">
+        <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+          <div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="line1">
+                <p style="text-align: center;">Transactions by month in <b>2024</b></p>
+                <div class="chart-wrapper1">
+                  <canvas baseChart [type]="'line'" [datasets]="chartData2" [labels]="chartLabels2" [options]="chartOptions2"></canvas>
+                </div>
+              </div>
+
+              <div fxLayout="column" fxLayoutAlign="space-around center">
+                <div fxLayout="row" fxLayoutAlign="space-around center">
+           
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+           </div>
 
       </mat-card-content>
     </mat-card>

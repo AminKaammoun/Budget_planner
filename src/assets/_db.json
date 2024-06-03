@@ -331,6 +331,24 @@
       "amount": 250,
       "createdDate": "2024-05-31T23:00:00.000Z",
       "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "b36d",
+      "type": "Expense",
+      "category": "Transport",
+      "description": "bus",
+      "amount": 100,
+      "createdDate": "2024-02-05T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
+    },
+    {
+      "id": "7e73",
+      "type": "Expense",
+      "category": "Healthcare",
+      "description": "ill",
+      "amount": 100,
+      "createdDate": "2024-02-01T23:00:00.000Z",
+      "date": "NaN/NaN/NaN"
     }
   ],
   "categories": [
